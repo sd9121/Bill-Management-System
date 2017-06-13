@@ -1,0 +1,22 @@
+uuid: 3d2706b2-10ed-4fe9-90ad-b51444d56617
+langcode: en
+status: true
+dependencies: {  }
+name: bill_teaser_220_110
+label: Bill_teaser(400x400)
+effects:
+  2754b516-bd5d-46ea-bcf8-0d2b1937c190:
+    uuid: 2754b516-bd5d-46ea-bcf8-0d2b1937c190
+    id: image_scale
+    weight: 1
+    data:
+      width: 400
+      height: null
+      upscale: true
+  3308b245-fdfc-4b95-965f-fced13d7be6e:
+    uuid: 3308b245-fdfc-4b95-965f-fced13d7be6e
+    id: image_resize
+    weight: 2
+    data:
+      width: 300
+      height: 220

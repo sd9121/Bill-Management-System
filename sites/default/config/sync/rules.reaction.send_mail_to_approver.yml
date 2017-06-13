@@ -1,0 +1,75 @@
+uuid: 05773989-a644-4852-acf7-17bd0936d507
+langcode: en
+status: true
+dependencies: {  }
+id: send_mail_to_approver
+label: 'Send mail to approver'
+events:
+  -
+    event_name: 'rules_entity_insert:node'
+description: 'When new bill save.'
+tags:
+  - ''
+config_version: '3'
+expression:
+  id: rules_rule
+  uuid: 0ed07bd2-04fa-4193-b06f-5e1df81de77c
+  conditions:
+    id: rules_and
+    uuid: 12d54a16-e701-4290-84c4-b628d52e969a
+    conditions:
+      -
+        id: rules_condition
+        uuid: 62303dea-450a-4edd-9d25-2d41c3fa0d63
+        context_values: {  }
+        context_mapping:
+          node: node
+        context_processors: {  }
+        provides_mapping: {  }
+        condition_id: 'entity_bundle:node'
+        negate: false
+      -
+        id: rules_condition
+        uuid: 9b403fec-934c-4afb-a555-c4dfbe2ce22d
+        context_values:
+          user: Employee
+          roles:
+            - Employee
+          operation: AND
+        context_mapping: {  }
+        context_processors:
+          user:
+            rules_tokens: {  }
+          roles:
+            rules_tokens: {  }
+          operation:
+            rules_tokens: {  }
+        provides_mapping: {  }
+        condition_id: rules_user_has_role
+        negate: false
+  actions:
+    id: rules_action_set
+    uuid: 873a9848-902d-4a5d-9c21-bef297c8ae2b
+    actions:
+      -
+        id: rules_action
+        uuid: d3a66a7d-1c86-419c-bd2c-f1de3584a561
+        context_values:
+          roles:
+            - Approver
+          message: 'Bill need approval.'
+          reply: ''
+          language: ''
+        context_mapping:
+          subject: node.title.value
+        context_processors:
+          roles:
+            rules_tokens: {  }
+          message:
+            rules_tokens: {  }
+          reply:
+            rules_tokens: {  }
+          language:
+            rules_tokens: {  }
+        provides_mapping: {  }
+        action_id: rules_mail_to_users_of_role

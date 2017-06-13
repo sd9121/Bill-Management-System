@@ -1,0 +1,9 @@
+uuid: 22cffb1a-b799-40ce-a809-b7eedb61e70b
+langcode: en
+status: true
+dependencies: {  }
+name: 'Expense Categories'
+vid: expense_categories
+description: 'Expense Categories Lists'
+hierarchy: 0
+weight: 0

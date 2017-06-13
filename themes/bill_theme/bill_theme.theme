@@ -1,0 +1,7 @@
+<?php
+function bill_theme_preprocess_page_title(&$variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node_type')) {
+    if($node->id()=='bill')
+    $variables['title'] = $node->label();
+  }
+}

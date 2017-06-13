@@ -1,0 +1,23 @@
+uuid: d255f2ae-adf4-4927-bc27-4656144a117d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_fixed_budget
+    - taxonomy.vocabulary.budget
+id: taxonomy_term.budget.field_fixed_budget
+field_name: field_fixed_budget
+entity_type: taxonomy_term
+bundle: budget
+label: 'Fixed Budget'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ' ₹ '
+  suffix: ''
+field_type: decimal

@@ -1,0 +1,25 @@
+uuid: ef6ecb27-3f61-48df-808f-36ca894b66aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.easychart.body
+    - field.field.node.easychart.easychart
+    - node.type.easychart
+  module:
+    - user
+_core:
+  default_config_hash: FWYk7O0JG28VJPEUqte0NN5KZ5fK2jyyBPz6Ugs1YdI
+id: node.easychart.teaser
+targetEntityType: node
+bundle: easychart
+mode: teaser
+content:
+  flag_bookmark:
+    weight: 10
+    region: content
+hidden:
+  body: true
+  easychart: true
+  links: true

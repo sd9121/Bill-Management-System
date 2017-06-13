@@ -1,0 +1,72 @@
+uuid: 33d7f29b-dad3-494f-999a-57855dde6b0f
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.bill.body
+    - field.field.node.bill.field_expenditure
+    - field.field.node.bill.field_expense_category
+    - field.field.node.bill.field_expenses
+    - field.field.node.bill.field_reimbursements
+    - field.field.node.bill.field_upload_image
+    - node.type.bill
+  module:
+    - image
+    - text
+    - user
+id: node.bill.full
+targetEntityType: node
+bundle: bill
+mode: full
+content:
+  body:
+    type: text_default
+    weight: 2
+    region: right
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_expenditure:
+    type: entity_reference_entity_view
+    weight: 4
+    region: right
+    label: above
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+  field_expense_category:
+    type: entity_reference_entity_view
+    weight: 5
+    region: right
+    label: above
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+  field_expenses:
+    type: number_decimal
+    weight: 3
+    region: right
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+  field_upload_image:
+    type: image
+    weight: 0
+    region: left
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+hidden:
+  content_moderation_control: true
+  field_reimbursements: true
+  flag_bookmark: true
+  links: true

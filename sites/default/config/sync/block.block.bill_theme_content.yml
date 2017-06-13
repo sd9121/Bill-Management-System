@@ -1,0 +1,22 @@
+uuid: e08636d0-527a-4bf7-b965-3be486365b92
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bill_theme
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: bill_theme_content
+theme: bill_theme
+region: content
+weight: -4
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

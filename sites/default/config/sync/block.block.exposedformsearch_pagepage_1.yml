@@ -1,0 +1,23 @@
+uuid: 2a466072-83e6-4f6c-b796-029290752c9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.search_page
+  module:
+    - views
+  theme:
+    - bill_theme
+id: exposedformsearch_pagepage_1
+theme: bill_theme
+region: header
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:search_page-page_1'
+settings:
+  id: 'views_exposed_filter_block:search_page-page_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility: {  }

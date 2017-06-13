@@ -1,0 +1,31 @@
+uuid: 9ae1018e-de6f-480e-b80e-76f8ae0b62c0
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:29a766aa-b9f4-4279-9ef1-d807ceea5302'
+  module:
+    - block_content
+    - system
+  theme:
+    - bill_theme
+id: banner
+theme: bill_theme
+region: header_bottom
+weight: -10
+provider: null
+plugin: 'block_content:29a766aa-b9f4-4279-9ef1-d807ceea5302'
+settings:
+  id: 'block_content:29a766aa-b9f4-4279-9ef1-d807ceea5302'
+  label: Banner
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

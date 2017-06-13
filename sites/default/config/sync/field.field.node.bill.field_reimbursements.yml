@@ -1,0 +1,23 @@
+uuid: af9e3377-568d-4955-99bb-4213df198704
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_reimbursements
+    - node.type.bill
+id: node.bill.field_reimbursements
+field_name: field_reimbursements
+entity_type: node
+bundle: bill
+label: Reimbursement
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

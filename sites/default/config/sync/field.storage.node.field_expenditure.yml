@@ -1,0 +1,20 @@
+uuid: b1168a3f-bfe2-4e33-a475-4fed971b599f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_expenditure
+field_name: field_expenditure
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

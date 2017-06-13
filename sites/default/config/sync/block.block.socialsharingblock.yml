@@ -1,0 +1,20 @@
+uuid: c2e053d4-cc07-4fa7-8a07-89b48ef0ea7b
+langcode: en
+status: true
+dependencies:
+  module:
+    - social_media
+  theme:
+    - bill_theme
+id: socialsharingblock
+theme: bill_theme
+region: footer
+weight: -9
+provider: null
+plugin: social_sharing_block
+settings:
+  id: social_sharing_block
+  label: 'Social Sharing block'
+  provider: social_media
+  label_display: '0'
+visibility: {  }

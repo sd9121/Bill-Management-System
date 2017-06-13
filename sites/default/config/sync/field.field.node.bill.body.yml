@@ -1,0 +1,22 @@
+uuid: 73b778ac-ea93-4788-8721-c00615da0e59
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.bill
+  module:
+    - text
+id: node.bill.body
+field_name: body
+entity_type: node
+bundle: bill
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

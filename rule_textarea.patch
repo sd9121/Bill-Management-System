@@ -1,0 +1,60 @@
+diff --git a/core-new_textarea_typedata-2409059-37-8.0.patch b/core-new_textarea_typedata-2409059-37-8.0.patch
+new file mode 100644
+index 0000000000..e69de29bb2
+diff --git a/core/lib/Drupal/Core/TypedData/Plugin/DataType/TextAreaData.php b/core/lib/Drupal/Core/TypedData/Plugin/DataType/TextAreaData.php
+new file mode 100644
+index 0000000000..b9177c94bd
+--- /dev/null
++++ b/core/lib/Drupal/Core/TypedData/Plugin/DataType/TextAreaData.php
+@@ -0,0 +1,28 @@
++<?php
++
++namespace Drupal\Core\TypedData\Plugin\DataType;
++
++use Drupal\Core\TypedData\PrimitiveBase;
++use Drupal\Core\TypedData\Type\TextAreaInterface;
++
++/**
++ * The textarea data type.
++ *
++ * The plain value of a string is a regular PHP string. For setting the value
++ * any PHP variable that casts to a string may be passed.
++ *
++ * @DataType(
++ *   id = "textarea",
++ *   label = @Translation("Text Area")
++ * )
++ */
++class TextAreaData extends PrimitiveBase implements TextAreaInterface {
++
++  /**
++   * {@inheritdoc}
++   */
++  public function getCastedValue() {
++    return $this->getString();
++  }
++
++}
+diff --git a/core/lib/Drupal/Core/TypedData/Type/TextAreaInterface.php b/core/lib/Drupal/Core/TypedData/Type/TextAreaInterface.php
+new file mode 100644
+index 0000000000..6b6d2df7cf
+--- /dev/null
++++ b/core/lib/Drupal/Core/TypedData/Type/TextAreaInterface.php
+@@ -0,0 +1,17 @@
++<?php
++
++namespace Drupal\Core\TypedData\Type;
++
++use Drupal\Core\TypedData\PrimitiveInterface;
++
++/**
++ * Interface for textarea.
++ *
++ *  The plain value of a string is a regular PHP string. For setting the value
++ * any PHP variable that casts to a string may be passed.
++ *
++ * @ingroup typed_data
++ */
++interface TextAreaInterface extends PrimitiveInterface {
++
++}

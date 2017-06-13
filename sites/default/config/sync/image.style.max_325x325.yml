@@ -1,0 +1,27 @@
+uuid: 50bf6ddb-2e47-4c55-87df-0cddee61b30b
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - responsive_image
+_core:
+  default_config_hash: YbP9GLqlo6fjA8GIfiC8CzCOjkUm0Cf3A0_aRw8vHhE
+name: max_325x325
+label: 'Max 325x325'
+effects:
+  cb842cc8-682f-42a6-bd05-5a1ac726f0d8:
+    uuid: cb842cc8-682f-42a6-bd05-5a1ac726f0d8
+    id: image_scale
+    weight: 1
+    data:
+      width: 325
+      height: 325
+      upscale: false
+  9daf09d5-3323-4d4a-8614-a06048c3fe5d:
+    uuid: 9daf09d5-3323-4d4a-8614-a06048c3fe5d
+    id: image_resize
+    weight: 2
+    data:
+      width: 300
+      height: 220

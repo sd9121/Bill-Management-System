@@ -1,0 +1,30 @@
+uuid: 73ac7509-6cec-408e-8e1e-390d84b61e52
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.bill_teaser_220_110
+    - image.style.max_325x325
+    - image.style.medium
+  theme:
+    - bartik
+id: bill_image
+label: 'Bill Image'
+image_style_mappings:
+  -
+    breakpoint_id: bartik.wide
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: bill_teaser_220_110
+  -
+    breakpoint_id: bartik.narrow
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: max_325x325
+  -
+    breakpoint_id: bartik.mobile
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: medium
+breakpoint_group: bartik
+fallback_image_style: bill_teaser_220_110

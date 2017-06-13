@@ -1,0 +1,69 @@
+***************
+*** 49,55 ****
+    $libraries['lib.easycharts.render'] = [
+      'version' => 'VERSION',
+      'js' => [
+-       base_path() . 'libraries/easychart/dist/ec.render.min.js' => [],
+      ]
+    ];
+  
+--- 49,55 ----
+    $libraries['lib.easycharts.render'] = [
+      'version' => 'VERSION',
+      'js' => [
++       '/libraries/easychart/dist/ec.render.min.js' => [],
+      ]
+    ];
+  
+***************
+*** 63,78 ****
+        'gpl-compatible' => FALSE,
+      ],
+      'js' => [
+-       base_path() . 'libraries/highcharts/js/highcharts.js' => [],
+-       base_path() . 'libraries/highcharts/js/highcharts-3d.js' => [],
+-       base_path() . 'libraries/highcharts/js/highcharts-more.js' => [],
+-       base_path() . 'libraries/highcharts/js/modules/data.js' => [],
+-       base_path() . 'libraries/highcharts/js/modules/funnel.js' => [],
+-       base_path() . 'libraries/highcharts/js/modules/heatmap.js' => [],
+-       base_path() . 'libraries/highcharts/js/modules/no-data-to-display.js' => [],
+-       base_path() . 'libraries/highcharts/js/modules/solid-gauge.js' => [],
+-       base_path() . 'libraries/highcharts/js/modules/treemap.js' => [],
+-       base_path() . 'libraries/highcharts/js/modules/exporting.js' => [],
+      ]
+    ];
+  
+--- 63,78 ----
+        'gpl-compatible' => FALSE,
+      ],
+      'js' => [
++       '/libraries/highcharts/js/highcharts.js' => [],
++       '/libraries/highcharts/js/highcharts-3d.js' => [],
++       '/libraries/highcharts/js/highcharts-more.js' => [],
++       '/libraries/highcharts/js/modules/data.js' => [],
++       '/libraries/highcharts/js/modules/funnel.js' => [],
++       '/libraries/highcharts/js/modules/heatmap.js' => [],
++       '/libraries/highcharts/js/modules/no-data-to-display.js' => [],
++       '/libraries/highcharts/js/modules/solid-gauge.js' => [],
++       '/libraries/highcharts/js/modules/treemap.js' => [],
++       '/libraries/highcharts/js/modules/exporting.js' => [],
+      ]
+    ];
+  
+***************
+*** 85,91 ****
+        'gpl-compatible' => TRUE,
+      ],
+      'js' => [
+-       base_path() . 'libraries/easychart/dist/ec.min.js' => [],
+      ]
+    ];
+  
+--- 85,91 ----
+        'gpl-compatible' => TRUE,
+      ],
+      'js' => [
++       '/libraries/easychart/dist/ec.min.js' => [],
+      ]
+    ];
+  

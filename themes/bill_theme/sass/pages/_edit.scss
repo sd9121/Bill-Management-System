@@ -1,0 +1,47 @@
+/*
+* Css for content .
+*/
+
+.block-system-main-block {
+    //edit content
+    .node-bill-edit-form,
+    .node-bill-form {
+        width: 60%;
+        margin: 0 auto;
+        .text-full,
+        .js-form-file,
+        .form-number,
+        .form-text {
+            @extend %input-style;
+            width: 97%;
+        }
+        .form-textarea-wrapper {
+            textarea {
+                min-height: 80px;
+                width: 100%;
+            }
+        }
+        .form-submit {
+            @extend %button-style;
+        }
+        @media screen and (max-width:$mobile_start) {
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+        .js-form-type-vertical-tabs {
+            display: none;
+        }
+        .dropbutton {
+            .moderation-state-disapproved {
+                border: 1px solid white;
+            }
+        }
+    }
+    .filter-help,
+    .filter-guidelines,
+    #edit-field-upload-image-0-upload--description {
+        display: none;
+    }
+}

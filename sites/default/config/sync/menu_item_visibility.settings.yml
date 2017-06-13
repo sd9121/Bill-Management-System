@@ -1,0 +1,48 @@
+mlid:
+  'menu_link_content:841f6a56-c7eb-4680-8d61-0d54eacf65ea':
+    roles: {  }
+    access_check: false
+  'menu_link_content:c058a07b-3139-456a-bef8-300850a27296':
+    roles: {  }
+    access_check: false
+  'menu_link_content:3ad59813-9112-4123-93a8-f1845964b409':
+    roles: {  }
+    access_check: false
+  'menu_link_content:9e72a6bc-e7f7-49b2-b31a-1d35c0946117':
+    roles:
+      - employee
+    access_check: false
+  'menu_link_content:c337b2f3-e542-4234-8b3c-4fe2ca7a2d84':
+    roles:
+      - administrator
+      - approver
+    access_check: false
+  'menu_link_content:40a864d3-52c9-4e38-9388-fec2acfe1d1e':
+    roles:
+      - employee
+    access_check: false
+  'menu_link_content:630dace9-76f3-4952-add2-1542c682a49f':
+    roles: {  }
+    access_check: false
+  'menu_link_content:d808b010-7d4c-4164-bfcc-c6a5f8e86af9':
+    roles:
+      - employee
+    access_check: false
+  'menu_link_content:3b188ca1-6255-4b80-b357-f1a601b061f2':
+    roles: {  }
+    access_check: false
+  'menu_link_content:7c9a9faa-61d4-4116-a0d5-021adaed33ac':
+    roles:
+      - administrator
+      - employee
+      - approver
+    access_check: false
+  'menu_link_content:be18b29c-9d81-4bad-9c07-de0c72441537':
+    roles: {  }
+    access_check: false
+  'menu_link_content:54de6d7e-e1a4-4ddf-a579-8f25c0547c2e':
+    roles:
+      - administrator
+      - employee
+      - approver
+    access_check: false

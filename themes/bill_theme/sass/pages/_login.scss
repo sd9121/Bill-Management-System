@@ -1,0 +1,68 @@
+.user-login-form,
+.user-pass {
+    @include form-layout(50%);
+    label {
+        @extend %label;
+    }
+    .description {
+        font-size: 0.85em;
+    }
+    .form-text {
+        @extend %input-style;
+    }
+    .form-submit {
+        @extend %button-style;
+    }
+    p {
+        text-align: justify;
+        font-size: 0.85em;
+    }
+    @media screen and (max-width: $desktop) {
+        width: 70%;
+    }
+}
+
+.user-pass {
+    label {
+        width: auto;
+    }
+}
+
+
+/*
+* Css for tabs
+*/
+
+.tabs {
+    display: table;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    li {
+        line-height: 38px;
+        a {
+            background-color: white;
+            color: #003954;
+        }
+        a:hover {
+            background-color: white;
+            color: #003954;
+            ;
+            border-bottom: 3px solid #1b95e0;
+            cursor: pointer;
+        }
+    }
+    .is-active {
+        a {
+            color: #1b95e0;
+            background: white;
+            border-bottom: 3px solid #1b95e0;
+        }
+    }
+    @media screen and (max-width: $mobile_start) {
+        // text-align: center;
+        font-size: 14px;
+    }
+}

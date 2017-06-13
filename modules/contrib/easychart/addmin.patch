@@ -1,0 +1,48 @@
+diff --git a/easychart.module b/easychart.module
+index ea7866a..83191cf 100644
+--- a/easychart.module
++++ b/easychart.module
+@@ -49,7 +49,7 @@ function easychart_library_info_build() {
+   $libraries['lib.easycharts.render'] = [
+     'version' => 'VERSION',
+     'js' => [
+-      base_path() . 'libraries/easychart/dist/ec.render.min.js' => [],
++      '/libraries/easychart/dist/ec.render.min.js' => [],
+     ]
+   ];
+
+@@ -63,16 +63,16 @@ function easychart_library_info_build() {
+       'gpl-compatible' => FALSE,
+     ],
+     'js' => [
+-      base_path() . 'libraries/highcharts/js/highcharts.js' => [],
+-      base_path() . 'libraries/highcharts/js/highcharts-3d.js' => [],
+-      base_path() . 'libraries/highcharts/js/highcharts-more.js' => [],
+-      base_path() . 'libraries/highcharts/js/modules/data.js' => [],
+-      base_path() . 'libraries/highcharts/js/modules/funnel.js' => [],
+-      base_path() . 'libraries/highcharts/js/modules/heatmap.js' => [],
+-      base_path() . 'libraries/highcharts/js/modules/no-data-to-display.js' => [],
+-      base_path() . 'libraries/highcharts/js/modules/solid-gauge.js' => [],
+-      base_path() . 'libraries/highcharts/js/modules/treemap.js' => [],
+-      base_path() . 'libraries/highcharts/js/modules/exporting.js' => [],
++      '/libraries/highcharts/js/highcharts.js' => [],
++      '/libraries/highcharts/js/highcharts-3d.js' => [],
++      '/libraries/highcharts/js/highcharts-more.js' => [],
++      '/libraries/highcharts/js/modules/data.js' => [],
++      '/libraries/highcharts/js/modules/funnel.js' => [],
++      '/libraries/highcharts/js/modules/heatmap.js' => [],
++      '/libraries/highcharts/js/modules/no-data-to-display.js' => [],
++      '/libraries/highcharts/js/modules/solid-gauge.js' => [],
++      '/libraries/highcharts/js/modules/treemap.js' => [],
++      '/libraries/highcharts/js/modules/exporting.js' => [],
+     ]
+   ];
+
+@@ -85,7 +85,7 @@ function easychart_library_info_build() {
+       'gpl-compatible' => TRUE,
+     ],
+     'js' => [
+-      base_path() . 'libraries/easychart/dist/ec.min.js' => [],
++      '/libraries/easychart/dist/ec.min.js' => [],
+     ]
+   ];

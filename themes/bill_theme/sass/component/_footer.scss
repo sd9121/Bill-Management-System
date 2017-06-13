@@ -1,0 +1,19 @@
+.region-footer {
+    background-color: #1f2532;
+    margin-top: 10px;
+    .social-media-sharing {
+        text-align: center;
+        ul {
+            @media screen and (max-width: $mobile_start) {
+                padding: 0px;
+            }
+            li {
+                margin: 0;
+                padding: 15px 20px 15px 20px;
+                @media screen and (max-width: $mobile_start) {
+                    padding: 10px;
+                }
+            }
+        }
+    }
+}

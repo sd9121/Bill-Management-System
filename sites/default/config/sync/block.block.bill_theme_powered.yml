@@ -1,0 +1,22 @@
+uuid: c44a278f-e6c4-42fb-b272-1f56f981a090
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - bill_theme
+_core:
+  default_config_hash: jQQUUWN2Uxr5qZtc9zcJKBCxpKY8orN1u2HPqYYRQDI
+id: bill_theme_powered
+theme: bill_theme
+region: header_top
+weight: -8
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

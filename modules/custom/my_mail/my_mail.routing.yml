@@ -1,0 +1,7 @@
+my_mail:
+  path: /my/mail
+  defaults:
+    _controller: Drupal\my_mail\Controller\MyMailController::sendMail
+  requirements:
+    _permission: 'access content'
+

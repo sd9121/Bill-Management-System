@@ -1,0 +1,22 @@
+uuid: a20c5cf5-c168-4007-82e5-fcecc81a5f34
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.bill
+id: node.bill.promote
+field_name: promote
+entity_type: node
+bundle: bill
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

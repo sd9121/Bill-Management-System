@@ -1,0 +1,270 @@
+<?php
+
+/**
+ * @file
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\Entity\Role;
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_form_alter().
+ */
+function disable_field_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id){
+  // Add disable field only in Field Storage config.
+  $bundle = FALSE;
+  $form_entity_type = FALSE;
+  $page = FALSE;
+  // Get bundle and page operation(add/edit).
+  if ($form_object = $form_state->getFormObject()) {
+    if ($form_object instanceof Drupal\Core\Entity\ContentEntityForm) {
+      $page = $form_state->getFormObject()->getOperation();
+      $bundle = $form_object->getEntity()->bundle();
+    }
+    elseif ($form_object instanceof Drupal\field_ui\Form\FieldConfigEditForm) {
+      $bundle = $form_object->getEntity()->bundle();
+      $page = $form_state->getFormObject()->getOperation();
+    }
+  }
+  // Get Entity type.
+  if(isset($form['#process'][1][0])) {
+    $form_entity_type = $form['#process'][1][0]->get('targetEntityType');
+  }
+  // Change default to add.
+  if(($page == 'default') && ($form_entity_type != 'taxonomy_term')){
+    $page = 'add';
+  }
+  // Only for Taxonomy Entity.
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_args = explode('/', $current_path);
+  if(($page == 'default') && ($form_entity_type == 'taxonomy_term') && ($path_args[1] == 'taxonomy') && ($path_args[4] == 'edit')){
+    $page = 'edit';
+  }
+  // Disable Field.
+  $user_roles = \Drupal::currentUser()->getRoles();
+  if(($form_entity_type) && ($bundle)){
+    foreach (Drupal::service('entity_field.manager')->getFieldDefinitions($form_entity_type, $bundle) as $field_name => $field_definition) {
+      if (!empty($field_definition->getTargetBundle())) {
+        // Get disable field details.
+        $check = disable_field_check_disable($bundle, $field_name, $page, $form_entity_type);
+        if($check){
+          foreach ($check as $disable) {
+            $roles = json_decode($disable->roles);
+            $disable_check = array_diff($roles, $user_roles);
+            if (count($disable_check) < count($roles)) {
+              $form[$field_name]['#disabled'] = TRUE;
+            }
+          }
+        }
+      }
+    }
+  }
+  if(\Drupal::currentUser()->hasPermission('disable textfield module')){
+    if($form_id == 'field_storage_config_edit_form'){
+      // Fetch Roles except anonymous.
+      $roles = user_roles($membersonly = FALSE, $permission = NULL);
+      $option = array();
+      foreach($roles as $role){
+        $option[$role->id()] = $role->label();
+      }
+      $form['field']['disable_field'] = array(
+        '#type' => 'details',
+        '#title' => t('Disable Field Settings'),
+        '#open' => TRUE,
+        '#description' => t('Irrespective of Field Settings, we can change Disable field settings here.'),
+      );
+      $form['field']['disable_field']['add_disable'] = array(
+        '#type' => 'checkboxes',
+        '#options' => array(
+          'add_disable' => t('Disable this field in add content form'),
+        ),
+        '#title' => t('Do you want to make this field disable?'),
+        '#weight' => 1,
+      );
+      $form['field']['disable_field']['roles_add'] = array(
+        '#type' => 'select',
+        '#options' => $option,
+        '#title' => t('Roles for add form.'),
+        '#multiple' => TRUE,
+        '#weight' => 2,
+        '#states' => array(
+          'visible' => array(
+            ':input[name="add_disable[add_disable]"]' => array('checked' => TRUE),
+          ),
+        ),
+      );
+      $form['field']['disable_field']['edit_disable'] = array(
+        '#type' => 'checkboxes',
+        '#options' => array(
+          'edit_disable' => t('Disable this field in edit content form'),
+        ),
+        '#weight' => 3,
+      );
+      $form['field']['disable_field']['roles_edit'] = array(
+        '#type' => 'select',
+        '#options' => $option,
+        '#title' => t('Roles for edit form.'),
+        '#multiple' => TRUE,
+        '#weight' => 4,
+        '#states' => array(
+          'visible' => array(
+            ':input[name="edit_disable[edit_disable]"]' => array('checked' => TRUE),
+          ),
+        ),
+      );
+      // Default Values.
+
+      if(isset($form_state->getBuildInfo()['args'])){
+        $args = explode('.',$form_state->getBuildInfo()['args'][0]);
+        $entity_type = $args[0];
+        $bundle_type = $args[1];
+        $field_name = $args[2];
+        // Checking DB to set default Values.
+          $connection = \Drupal::database();
+        $disable_query = $connection->select('disable_field', 'dt');
+        $disable_query->fields('dt', array('page', 'roles'));
+        $disable_query->condition('dt.bundle', $bundle_type, '=');
+        $disable_query->condition('dt.entity_type', $entity_type, '=');
+        $disable_query->condition('dt.field_name', $field_name, '=');
+        $disable_result = $disable_query->execute()->fetchAll();
+        if (!empty($disable_result)) {
+          foreach ($disable_result as $result) {
+            if ($result->page == 'add') {
+              $form['field']['disable_field']['add_disable']['#default_value'] = array('add_disable');
+              $add_roles = json_decode($result->roles);
+              $form['field']['disable_field']['roles_add']['#default_value'] = $add_roles;
+            }
+            if ($result->page == 'edit') {
+              $form['field']['disable_field']['edit_disable']['#default_value'] = array('edit_disable');
+              $edit_roles = json_decode($result->roles);
+              $form['field']['disable_field']['roles_edit']['#default_value'] = $edit_roles;
+            }
+          }
+        }
+      }
+      $form['#attached']['library'][] = 'system/jquery';
+      $form['#attached']['library'][] = 'system/drupal';
+      $form['#attached']['library'][] = 'disable_field/disable_field';
+      // Add validate and submit handlers.
+      array_unshift($form['#validate'], 'disable_field_disable_validate');
+      array_unshift($form['#validate'], 'disable_field_disable_submit');
+    }
+  }
+}
+
+/**
+ * Implements submit function.
+ */
+function disable_field_disable_validate(array &$form, FormStateInterface $form_state) {
+  $values = $form_state->getValues();
+  $add_disable = $values['add_disable']['add_disable'];
+  $edit_disable = $values['edit_disable']['edit_disable'];
+  $roles_add = $values['roles_add'];
+  $roles_edit = $values['roles_edit'];
+  // For add checkbox;
+  if (strlen($add_disable) == 11) {
+    if (empty($roles_add)) {
+      $form_state->setErrorByName('roles_add', t("Select Atleast one Role to disable add."));
+    }
+  }
+  // For Edit checkbox.
+  if (strlen($edit_disable) == 12) {
+    if (empty($roles_edit)) {
+      $form_state->setErrorByName('roles_edit', t("Select Atleast one Role to disable edit."));
+    }
+  }
+}
+
+/**
+ * Implements submit function.
+ */
+function disable_field_disable_submit(array &$form, FormStateInterface $form_state) {
+  // Get Values.
+    $query=\Drupal::database();
+  $values = $form_state->getValues();
+  $id = $form_state->getFormObject()->getEntity()->id();
+  $entity_type = $form_state->getFormObject()->getEntity()->get('entity_type');
+  $field_name = $form_state->getFormObject()->getEntity()->get('field_name');
+  $args = explode('.',$form_state->getBuildInfo()['args'][0]);
+  $bundle_type = $args[1];
+  $add_disable = $values['add_disable']['add_disable'];
+  $edit_disable = $values['edit_disable']['edit_disable'];
+  $roles_add = $values['roles_add'];
+  $roles_edit = $values['roles_edit'];
+  // Extract Array Keys of roles.
+  if (!empty($roles_add)) {
+    $roles_add = array_keys($roles_add);
+  }
+  if (!empty($roles_edit)) {
+    $roles_edit = array_keys($roles_edit);
+  }
+  // Delete if uncheck For add checkbox;
+  if (strlen($add_disable) == 1) {
+
+    $query->delete('disable_field')
+      ->condition('entity_type', $entity_type)
+      ->condition('bundle', $bundle_type)
+      ->condition('field_name', $field_name)
+      ->condition('disable_page', 'add_disable')
+      ->execute();
+  }
+  // Delete if uncheck For Edit checkbox.
+  if (strlen($edit_disable) == 1) {
+
+    $query->delete('disable_field')
+      ->condition('entity_type', $entity_type)
+      ->condition('bundle', $bundle_type)
+      ->condition('field_name', $field_name)
+      ->condition('disable_page', 'edit_disable')
+      ->execute();
+  }
+  // For add checkbox;
+  if (strlen($add_disable) == 11) {
+
+    $query->merge('disable_field')->key(array(
+      'entity_type' => $entity_type,
+      'bundle' => $bundle_type,
+      'field_name' => $field_name,
+      'page' => 'add',
+      'disable_page' => 'add_disable',
+      'id' => $id,
+    ))
+      ->fields(array(
+        'status' => 1,
+        'roles' => json_encode($roles_add),
+    ))->execute();
+  }
+  // For Edit checkbox.
+  if (strlen($edit_disable) == 12) {
+
+    $query->merge('disable_field')->key(array(
+      'entity_type' => $entity_type,
+      'bundle' => $bundle_type,
+      'field_name' => $field_name,
+      'page' => 'edit',
+      'disable_page' => 'edit_disable',
+      'id' => $id,
+    ))
+      ->fields(array(
+        'status' => 1,
+        'roles' => json_encode($roles_edit),
+    ))->execute();
+  }
+}
+
+
+/**
+ * Generate a count of status using all values.
+ */
+function disable_field_check_disable($node_type, $key, $page, $entity) {
+  $connection = \Drupal::database();
+  $disable_query = $connection->select('disable_field', 'dt');
+  $disable_query->fields('dt', array('roles'));
+  $disable_query->condition('dt.bundle', $node_type, '=');
+  $disable_query->condition('dt.entity_type', $entity, '=');
+  $disable_query->condition('dt.field_name', $key, '=');
+  $disable_query->condition('dt.page', $page, '=');
+  $disable_result = $disable_query->execute()->fetchAll();
+  return $disable_result;
+}

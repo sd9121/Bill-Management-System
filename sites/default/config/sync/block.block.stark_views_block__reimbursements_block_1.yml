@@ -1,0 +1,48 @@
+uuid: eac212fd-791b-450d-ac54-d1f6f096cc6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.reimbursements
+  module:
+    - node
+    - system
+    - user
+    - views
+  theme:
+    - stark
+id: stark_views_block__reimbursements_block_1
+theme: stark
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:reimbursements-block_1'
+settings:
+  id: 'views_block:reimbursements-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+  context_mapping: {  }
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      bill: bill
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  request_path:
+    id: request_path
+    pages: /reimbursements
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      administrator: administrator
+      employee: employee
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

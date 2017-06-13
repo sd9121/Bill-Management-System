@@ -1,0 +1,29 @@
+uuid: e057dba2-6799-4e1d-a925-fe804a5fd818
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.easychart.body
+    - field.field.node.easychart.easychart
+    - node.type.easychart
+  module:
+    - easychart
+    - user
+_core:
+  default_config_hash: fxc9VzsJHVXJGsT-X1GYXMAGlmlaRbRJkIwIa4udAvU
+id: node.easychart.default
+targetEntityType: node
+bundle: easychart
+mode: default
+content:
+  easychart:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: easychart_default
+    region: content
+hidden:
+  body: true
+  flag_bookmark: true
+  links: true

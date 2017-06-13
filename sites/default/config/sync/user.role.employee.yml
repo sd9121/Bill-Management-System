@@ -1,0 +1,24 @@
+uuid: b12d5985-f855-40db-a7e6-39f3c226d139
+langcode: en
+status: true
+dependencies: {  }
+id: employee
+label: Employee
+weight: 3
+is_admin: null
+permissions:
+  - 'access content'
+  - 'access devel information'
+  - 'access kint'
+  - 'create bill content'
+  - 'delete bill revisions'
+  - 'edit own bill content'
+  - 'execute php code'
+  - 'switch users'
+  - 'use  The form mode emp_mode_form_mode linked to  node entity( bill )'
+  - 'use  The form mode employee_form linked to  node entity( bill )'
+  - 'use  The form mode employee_mode linked to  node entity( bill )'
+  - 'use  The form mode super linked to  node entity( bill )'
+  - 'use revoke_permission transition edit'
+  - 'use revoke_permission transition in_review'
+  - 'view own unpublished content'

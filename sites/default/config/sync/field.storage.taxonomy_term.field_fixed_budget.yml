@@ -1,0 +1,20 @@
+uuid: 1f1aae60-7b4c-4eeb-adec-8f8865335dbf
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.field_fixed_budget
+field_name: field_fixed_budget
+entity_type: taxonomy_term
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

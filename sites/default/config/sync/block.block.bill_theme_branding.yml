@@ -1,0 +1,25 @@
+uuid: a49159c2-1449-41b0-b3ad-c4e8658e3c85
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bill_theme
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: bill_theme_branding
+theme: bill_theme
+region: header_top
+weight: -10
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

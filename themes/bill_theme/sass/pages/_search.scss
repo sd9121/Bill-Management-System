@@ -1,0 +1,47 @@
+#views-exposed-form-search-page-page-1,
+#block-exposedformsearch-pagepage-2,
+#block-exposedformsearch-pagepage-3 {
+    .form--inline {
+        line-height: 98px;
+        margin-top: 14px;
+        .form-actions {
+            display: inline-block;
+        }
+        #edit-search-api-fulltext {
+            margin-right: -16px;
+            width: 55%;
+            height: 25px;
+            border-color: #9a9d9e;
+        }
+        #edit-actions {
+            margin-left: -98px;
+            #edit-submit-search-page {
+                border-color: #3498db;
+                font-weight: 100;
+                background: #3498db;
+                background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+                background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+                background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+                background-image: -o-linear-gradient(top, #3498db, #2980b9);
+                background-image: linear-gradient(to bottom, #3498db, #2980b9);
+                -webkit-border-radius: 5;
+                -moz-border-radius: 5;
+                border-radius: 5px;
+                font-family: Arial;
+                color: #ffffff;
+                font-size: 17px;
+                padding: 4px 8px 4px 8px;
+                text-decoration: none;
+            }
+            #edit-submit-search-page:hover {
+                background: #3cb0fd;
+                background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+                text-decoration: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,124 @@
+***************
+*** 96,154 ****
+   * @param $form_display
+   */
+  function controlAccessFormMode($configuration, $mode, $display_name, $storage, $id, &$form_display, $context) {
+-   $current_id = $id;
+-   // The role which has a maximum weight.
+-   $id_role = getRoleIdWithMaxWeight();
+-   $permission_access_all = "access_all_form_modes";
+-   //Get the right permission by mode( creation or edit), the role and display name used( ?display_name = display )
+-   $permission = getPermissionByModeAndRole($display_name, $configuration, $context);
+-   /**
+-    * Control the access to the form mode.
+-    * We have 3 conditions:
+-    * if the current user has access to all form modes , the default
+-    * form mode is activated ( default) else if you use ?display= correct_display
+-    * else if the user has access  only to different form modes,
+-    * the form mode used by default is the form modes
+-    * which the user has configured in
+-    * (www.your-site.com//admin/structure/display-modes/form/config-form-modes)
+-    * else finally, if the user does'nt has the permission to access
+-    * to the form mode, automatically, the form will returned with the default
+-    * form mode configured.
+-    *
+-    */
+-   $form_mode_id = explode('.',$current_id)[2];
+-   $default_id = explode('.',getTheRightDisplay($configuration, $mode, $id_role, $context))[2];
+-   if($form_mode_id == "" && $default_id !=  $form_mode_id){
+-     $current_id = getTheRightDisplay($configuration, $mode, $id_role, $context);
+-   }
+-   if (\Drupal::currentUser()->hasPermission($permission_access_all)) {
+-     $change_display = $storage->load($current_id);
+-     if ($change_display) {
+-       $form_display = $change_display;
+-     }
+-   }
+-   else {
+-     if (\Drupal::currentUser()
+-       ->hasPermission($permission)
+-     ) {
+-       $change_display = $storage->load($current_id);
+-       if ($change_display) {
+-         $form_display = $change_display;
+-       }
+-       \Drupal::logger('form.control')
+-         ->info("You haven't the permission to  access to use the form mode %display (role  %role ), you redirected to the form mode configured", array(
+-           "%display" => $display_name,
+-           "%role" => $id_role
+-         ));
+-     }
+-     else {
+-       $current_id = getTheRightDisplay($configuration, $mode, $id_role, $context);
+-       //print('permission with display '.$current_id);
+-       $change_display = $storage->load($current_id);
+-       if ($change_display && \Drupal\Core\Entity\Entity\EntityFormDisplay::load($current_id)
+-           ->status()
+-       ) {
+-         $form_display = $change_display;
+        }
+      }
+    }
+--- 96,157 ----
+   * @param $form_display
+   */
+  function controlAccessFormMode($configuration, $mode, $display_name, $storage, $id, &$form_display, $context) {
++   $pathArgs = \Drupal::request()->query->get('display');
++   if($pathArgs) {
++     $current_id = $id;
++     // The role which has a maximum weight.
++     $id_role = getRoleIdWithMaxWeight();
++     $permission_access_all = "access_all_form_modes";
++     //Get the right permission by mode( creation or edit), the role and display name used( ?display_name = display )
++     $permission = getPermissionByModeAndRole($display_name, $configuration, $context);
++     /**
++      * Control the access to the form mode.
++      * We have 3 conditions:
++      * if the current user has access to all form modes , the default
++      * form mode is activated ( default) else if you use ?display= correct_display
++      * else if the user has access  only to different form modes,
++      * the form mode used by default is the form modes
++      * which the user has configured in
++      * (www.your-site.com//admin/structure/display-modes/form/config-form-modes)
++      * else finally, if the user does'nt has the permission to access
++      * to the form mode, automatically, the form will returned with the default
++      * form mode configured.
++      *
++      */
++     $form_mode_id = explode('.', $current_id)[2];
++ 
++     if ($form_mode_id == "") {
++       $current_id = getTheRightDisplay($configuration, $mode, $id_role, $context);
++     }
++     if (\Drupal::currentUser()->hasPermission($permission_access_all)) {
++       $change_display = $storage->load($current_id);
++       if ($change_display) {
++         $form_display = $change_display;
++       }
++     }
++     else {
++       if (\Drupal::currentUser()
++         ->hasPermission($permission)
++       ) {
++         $change_display = $storage->load($current_id);
++         if ($change_display) {
++           $form_display = $change_display;
++         }
++         \Drupal::logger('form.control')
++           ->info("You haven't the permission to  access to use the form mode %display (role  %role ), you redirected to the form mode configured", array(
++             "%display" => $display_name,
++             "%role" => $id_role
++           ));
++       }
++       else {
++         $current_id = getTheRightDisplay($configuration, $mode, $id_role, $context);
++         //print('permission with display '.$current_id);
++         $change_display = $storage->load($current_id);
++         if ($change_display && \Drupal\Core\Entity\Entity\EntityFormDisplay::load($current_id)
++             ->status()
++         ) {
++           $form_display = $change_display;
++         }
+        }
+      }
+    }

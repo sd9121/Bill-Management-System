@@ -1,0 +1,40 @@
+.block-system-main-block {
+    .node--type-bill {
+        padding: 35px 0px;
+        width: 70%;
+        margin: 0 auto;
+        .field__label {
+            font-size: 18px;
+            @media screen and (max-width: $mobile_start) {
+                font-size: 16px;
+            }
+            // color: red;
+        }
+        .field--name-name {
+            font-size: 16px;
+            font-weight: 100;
+            @media screen and (max-width: $mobile_start) {
+                font-size: 14px;
+            }
+        }
+        .node__submitted {
+            color: grey;
+            font-size: 18px;
+            padding-bottom: 20px;
+            @media screen and (max-width: $tablets) {
+                font-size: 16px;
+            }
+            @media screen and (max-width: $mobile_start) {
+                font-size: 14px;
+            }
+        }
+        .node__content {
+            .field__item {
+                img {
+                    width: 50%;
+                    height: 50%;
+                }
+            }
+        }
+    }
+}

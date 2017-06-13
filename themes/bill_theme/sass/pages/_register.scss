@@ -1,0 +1,42 @@
+.block-system-main-block {
+    //user register form
+    .user-register-form,
+    .user-form {
+        @include form-layout(60%);
+        label {
+            @extend %label;
+        }
+        .description {
+            font-size: 0.85em;
+            padding-top: 8px;
+            text-align: justify;
+        }
+        .form-email,
+        .form-text,
+        .username {
+            @extend %input-style;
+        }
+        select {
+            @extend %select-option;
+            border-color: #ccc;
+            width: 100%;
+            color: black;
+        }
+        .js-form-file {
+            width: 100%;
+            border-color: #ccc;
+            // border: 1px solid #ccc;
+        }
+        .button--primary {
+            @extend %button-style;
+        }
+        .form-type-password {
+            max-width: 100%;
+            overflow: initial;
+            width: 100%;
+        }
+        @media screen and (max-width: $desktop) {
+            width: 70%;
+        }
+    }
+}

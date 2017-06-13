@@ -1,0 +1,13 @@
+uuid: 76acdad0-951b-4a65-9557-148bbf1ffaf7
+langcode: en
+status: true
+dependencies:
+  module:
+    - flag
+id: flag_action.following.unflag
+label: 'Unfollow this user'
+type: user
+plugin: 'flag_action:following.unflag'
+configuration:
+  flag_id: following
+  flag_action: unflag

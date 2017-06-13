@@ -1,0 +1,23 @@
+uuid: 3304fb44-9d2c-4077-bdb0-214435424644
+langcode: en
+status: true
+dependencies: {  }
+id: approver
+label: Approver
+weight: 4
+is_admin: null
+permissions:
+  - 'access content'
+  - 'administer content moderation'
+  - 'create bill content'
+  - 'delete any bill content'
+  - 'delete bill revisions'
+  - 'delete own bill content'
+  - 'edit any bill content'
+  - 'edit own bill content'
+  - 'use revoke_permission transition approved'
+  - 'use revoke_permission transition disapproved'
+  - 'view any unpublished content'
+  - 'view content moderation'
+  - 'view latest version'
+  - 'view own unpublished content'

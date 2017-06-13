@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall functions for the Disable Textfield module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function disable_field_schema() {
+  $schema['disable_field'] = [
+    'description' => 'The base table for Disable fields.',
+    'fields' => [
+      'entity_type' => [
+        'description' => 'Entity Type of Field.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'bundle' => [
+        'description' => 'Bundle type of Field.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'id' => [
+        'description' => 'Field ID.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'page' => [
+        'description' => 'Disable in.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'disable_page' => [
+        'description' => 'Disabled',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'field_name' => [
+        'description' => 'Field to disable/enable.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'roles' => [
+        'description' => 'Field to disable/enable for Roles.',
+        'type' => 'blob',
+        'not null' => FALSE,
+        'size' => 'big',
+        'serialize' => TRUE,
+      ],
+      'status' => [
+        'description' => 'Status of Field.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+    ],
+  ];
+  return $schema;
+}

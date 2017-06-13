@@ -1,0 +1,53 @@
+uuid: 963b0a82-6cb7-4434-b48c-da9141cabfc8
+langcode: en
+status: true
+dependencies: {  }
+id: notification_for_employee
+label: 'Notification for Employee'
+events:
+  -
+    event_name: 'rules_entity_update:node'
+description: 'Notification on bill approved by approver.'
+tags:
+  - ''
+config_version: '3'
+expression:
+  id: rules_rule
+  uuid: b89811a3-bc59-4eff-8102-1a2549b3a773
+  conditions:
+    id: rules_and
+    uuid: 6e527b2b-9632-4d6c-ad97-fba15b59703c
+    conditions:
+      -
+        id: rules_condition
+        uuid: bef43c2f-7a9c-4b75-897b-4f666216f7ed
+        context_values: {  }
+        context_mapping:
+          node: node
+        context_processors: {  }
+        provides_mapping: {  }
+        condition_id: rules_node_is_published
+        negate: false
+  actions:
+    id: rules_action_set
+    uuid: 4263b52b-fdee-4982-a79a-fad31a4b33ad
+    actions:
+      -
+        id: rules_action
+        uuid: 590b9b7c-0501-4d19-ada4-cfa6dd16eecc
+        context_values:
+          message: 'Bill Approved.'
+          reply: ''
+          language: ''
+        context_mapping:
+          to: node.uid.entity.mail
+          subject: node.title.value
+        context_processors:
+          message:
+            rules_tokens: {  }
+          reply:
+            rules_tokens: {  }
+          language:
+            rules_tokens: {  }
+        provides_mapping: {  }
+        action_id: rules_send_email

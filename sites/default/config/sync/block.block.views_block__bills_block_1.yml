@@ -1,0 +1,40 @@
+uuid: 545ef1e2-7f88-4271-8220-2a90a8dd4543
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.bills
+  module:
+    - system
+    - user
+    - views
+  theme:
+    - bill_theme
+id: views_block__bills_block_1
+theme: bill_theme
+region: content
+weight: -7
+provider: null
+plugin: 'views_block:bills-block_1'
+settings:
+  id: 'views_block:bills-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      administrator: administrator
+      employee: employee
+      approver: approver
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+  request_path:
+    id: request_path
+    pages: /bills
+    negate: false
+    context_mapping: {  }

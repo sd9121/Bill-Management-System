@@ -1,0 +1,30 @@
+uuid: cd733aa2-0771-421f-83b7-a2ca88ef9036
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.expenses_chart
+  module:
+    - system
+    - views
+  theme:
+    - stark
+id: stark_views_block__expenses_chart_block_1
+theme: stark
+region: content
+weight: -2
+provider: null
+plugin: 'views_block:expenses_chart-block_1'
+settings:
+  id: 'views_block:expenses_chart-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: /my-dashboard
+    negate: false
+    context_mapping: {  }
